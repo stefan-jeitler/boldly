@@ -1,7 +1,7 @@
 ﻿[CmdletBinding()]
 param (
     [Parameter(Position = 0)]
-    [string]$ProjectOrSolution = 'ChangeBlog.sln',
+    [string]$ProjectOrSolution = 'Boldly.sln',
     [ValidateSet('Release', 'Debug')]
     [string]$Configuration = 'Release',
     [string]$Version = '0.0.0',
