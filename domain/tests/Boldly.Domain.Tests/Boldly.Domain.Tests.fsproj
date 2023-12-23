@@ -9,11 +9,13 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Include="ResultAssert.fs" />
         <Folder Include="TestData\" />
         <Folder Include="TestDoubles\" />
         <Compile Include="Common\NameTests.fs" />
         <Compile Include="AccountAdministration\EmailTests.fs" />
-        <Folder Include="Versioning\" />
+        <Compile Include="Versioning\TextTests.fs" />
+        <Compile Include="Versioning\TechnicalNameTests.fs" />
         <Compile Include="Program.fs" />
     </ItemGroup>
 

@@ -9,9 +9,9 @@ let (>=>) a b = a >> (Result.bind b)
 type IWrappedString =
     abstract Value: string
 
-let create (label: string) canonicalize validate ctor (candidate: string) =
+let create (notEmptyErrorPrefix: string) canonicalize validate ctor (candidate: string) =
     if candidate = null then
-        Error(String.Format(ValidationStrings.EmptyError, label))
+        Error(String.Format(ValidationStrings.EmptyError, notEmptyErrorPrefix))
     else
         let c = canonicalize candidate
 

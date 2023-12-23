@@ -4,6 +4,7 @@ open System.Globalization
 open System.Threading
 open Boldly.Domain.Common
 open Boldly.Domain.AccountAdministration.Email
+open Boldly.Domain.Tests
 open Xunit
 
 [<Fact>]
@@ -11,8 +12,8 @@ let ``Valid email address (Happy Path)`` () =
     let email = email "stefan@change-blog.com"
     
     match email with
-    | Error e -> Assert.Fail($"Expected Ok, but got an error '{e}'")
     | Ok e -> Assert.Equal("stefan@change-blog.com", WrappedString.value e)
+    | Error e -> ResultAssert.errorNotExpected e
 
 [<Theory>]
 [<InlineData("stefan@change-blog.com ")>]
@@ -20,9 +21,11 @@ let ``Valid email address (Happy Path)`` () =
 [<InlineData(" stefan@change-blog.com ")>]
 let ``Leading and trailing whitespaces in email addresses will be removed`` emailAddress =
     let email = email emailAddress
-    let expected = create "stefan@change-blog.com"
+    let expected = "stefan@change-blog.com"
 
-    Assert.Equal(expected, email)
+    match email with
+    | Ok n -> Assert.Equal(expected, WrappedString.value n)
+    | Error e -> ResultAssert.errorNotExpected e
 
 [<Theory>]
 [<InlineData("stefanAtchange-blog")>]
@@ -31,16 +34,20 @@ let ``Leading and trailing whitespaces in email addresses will be removed`` emai
 [<InlineData("stefan@")>]
 let ``Email addresses without an at-sign surrounded by characters are invalid`` emailAddress =
     let email = email emailAddress
-    let expected = Error "Invalid email address"
+    let expected = "Invalid email address"
 
-    Assert.Equal(expected, email)
+    match email with
+    | Ok e -> ResultAssert.okNotExpected e
+    | Error e -> Assert.Equal(expected, e)
 
 [<Fact>]
 let ``An Email address with a whitespace is invalid`` () =
     let email = email "stef an@change-blog"
-    let expected = Error "Invalid email address"
+    let expected = "Invalid email address"
 
-    Assert.Equal(expected, email)
+    match email with
+    | Ok e -> ResultAssert.okNotExpected e
+    | Error e -> Assert.Equal(expected, e)
 
 [<Theory>]
 [<InlineData("stefan\n@change-blog")>]
@@ -48,14 +55,27 @@ let ``An Email address with a whitespace is invalid`` () =
 [<InlineData("stefan\r\n@change-blog")>]
 let ``Email addresses with control characters are invalid`` emailAddress =
     let email = email emailAddress
-    let expected = Error "Invalid email address"
+    let expected = "Invalid email address"
 
-    Assert.Equal(expected, email)
+    match email with
+    | Ok e -> ResultAssert.okNotExpected e
+    | Error e -> Assert.Equal(expected, e)
 
 [<Fact>]
 let ``An invalid email address in a different ui culture returns a localized error message`` () =
     Thread.CurrentThread.CurrentUICulture <- CultureInfo("de")
     let invalidEmail = email "stefanAtchange-blog"
-    let expected = Error "Ungültige E-Mail-Adresse"
+    let expected = "Ungültige E-Mail-Adresse"
 
-    Assert.Equal(expected, invalidEmail)
+    match invalidEmail with
+    | Ok e -> ResultAssert.okNotExpected e
+    | Error e -> Assert.Equal(expected, e)
+
+[<Fact>]
+let ``An email address must not be empty`` () =
+    let email = email ""
+    let expected = "The email address must not be empty"
+    
+    match email with
+    | Ok e -> ResultAssert.okNotExpected e
+    | Error e -> Assert.Equal(expected, e) 

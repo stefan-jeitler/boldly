@@ -3,6 +3,7 @@
 open System.Text.RegularExpressions
 open Boldly.Domain.Localization
 open Boldly.Domain.Common.WrappedString
+open System
 
 type Email =
     private
@@ -15,7 +16,7 @@ module Email =
 
     let minLength = 3
     let private minLengthValidator =
-        (minLengthValidator minLength ValidationStrings.Email)
+        (minLengthValidator minLength CommonStrings.Email)
 
     let maxLength = 254
     let private maxLengthValidator = maxLengthValidator maxLength
@@ -26,7 +27,12 @@ module Email =
         else
             Error ValidationStrings.InvalidEmailAddressError
 
-    let private validator = emailValidator >=> maxLengthValidator
+    let notEmptyValidator (candidate: string) =
+        match String.IsNullOrWhiteSpace(candidate) with
+        | true -> Error (String.Format(ValidationStrings.EmptyError, CommonStrings.EmailAddressWithArticle))
+        | false -> Ok candidate
+    
+    let private validator = notEmptyValidator >=> emailValidator >=> maxLengthValidator
 
-    let email = create ValidationStrings.Email singleLineTrimmed validator Email
+    let email = create CommonStrings.EmailAddressWithArticle singleLineTrimmed validator Email
     let create = email

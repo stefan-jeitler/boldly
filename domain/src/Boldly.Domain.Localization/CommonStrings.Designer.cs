@@ -21,14 +21,14 @@ namespace Boldly.Domain.Localization {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ValidationStrings {
+    public class CommonStrings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ValidationStrings() {
+        internal CommonStrings() {
         }
         
         /// <summary>
@@ -38,7 +38,7 @@ namespace Boldly.Domain.Localization {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Boldly.Domain.Localization.ValidationStrings", typeof(ValidationStrings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Boldly.Domain.Localization.CommonStrings", typeof(CommonStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -60,47 +60,74 @@ namespace Boldly.Domain.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} must not be empty.
+        ///   Looks up a localized string similar to Email.
         /// </summary>
-        public static string EmptyError {
+        public static string Email {
             get {
-                return ResourceManager.GetString("EmptyError", resourceCulture);
+                return ResourceManager.GetString("Email", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid email address.
+        ///   Looks up a localized string similar to Email address.
         /// </summary>
-        public static string InvalidEmailAddressError {
+        public static string EmailAddress {
             get {
-                return ResourceManager.GetString("InvalidEmailAddressError", resourceCulture);
+                return ResourceManager.GetString("EmailAddress", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The length must be {0} characters or fewer.
+        ///   Looks up a localized string similar to The email address.
         /// </summary>
-        public static string MaxLengthExceededError {
+        public static string EmailAddressWithArticle {
             get {
-                return ResourceManager.GetString("MaxLengthExceededError", resourceCulture);
+                return ResourceManager.GetString("EmailAddressWithArticle", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The length must be at least {0} characters.
+        ///   Looks up a localized string similar to The email.
         /// </summary>
-        public static string MinLengthNotReachedError {
+        public static string EmailWithArticle {
             get {
-                return ResourceManager.GetString("MinLengthNotReachedError", resourceCulture);
+                return ResourceManager.GetString("EmailWithArticle", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Whitespaces are not allowed.
+        ///   Looks up a localized string similar to The name.
         /// </summary>
-        public static string NoWhitespacesAllowed {
+        public static string NameWithArticle {
             get {
-                return ResourceManager.GetString("NoWhitespacesAllowed", resourceCulture);
+                return ResourceManager.GetString("NameWithArticle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technical name.
+        /// </summary>
+        public static string TechnicalName {
+            get {
+                return ResourceManager.GetString("TechnicalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The technical name.
+        /// </summary>
+        public static string TechnicalNameWithArticle {
+            get {
+                return ResourceManager.GetString("TechnicalNameWithArticle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The text.
+        /// </summary>
+        public static string TextWithArticle {
+            get {
+                return ResourceManager.GetString("TextWithArticle", resourceCulture);
             }
         }
     }

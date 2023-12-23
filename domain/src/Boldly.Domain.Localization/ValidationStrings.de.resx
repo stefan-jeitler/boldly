@@ -11,12 +11,6 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="Email" xml:space="preserve">
-        <value>E-Mail</value>
-    </data>
-    <data name="Name" xml:space="preserve">
-        <value>Name</value>
-    </data>
     <data name="MinLengthNotReachedError" xml:space="preserve">
         <value>Die Länge muss größer oder gleich {0} sein</value>
     </data>
@@ -28,5 +22,8 @@
     </data>
     <data name="EmptyError" xml:space="preserve">
         <value>{0} darf nicht leer sein</value>
+    </data>
+    <data name="NoWhitespacesAllowed" xml:space="preserve">
+        <value>Leerzeichen sind nicht erlaubt</value>
     </data>
 </root>

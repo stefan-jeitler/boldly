@@ -18,19 +18,28 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="EmptyError" xml:space="preserve">
-        <value>{0} must not be empty</value>
+    <data name="Email" xml:space="preserve">
+        <value>Email</value>
     </data>
-    <data name="InvalidEmailAddressError" xml:space="preserve">
-        <value>Invalid email address</value>
+    <data name="EmailAddress" xml:space="preserve">
+        <value>Email address</value>
     </data>
-    <data name="MinLengthNotReachedError" xml:space="preserve">
-        <value>The length must be at least {0} characters</value>
+    <data name="EmailAddressWithArticle" xml:space="preserve">
+        <value>The email address</value>
     </data>
-    <data name="MaxLengthExceededError" xml:space="preserve">
-        <value>The length must be {0} characters or fewer</value>
+    <data name="EmailWithArticle" xml:space="preserve">
+        <value>The email</value>
     </data>
-    <data name="NoWhitespacesAllowed" xml:space="preserve">
-        <value>Whitespaces are not allowed</value>
+    <data name="NameWithArticle" xml:space="preserve">
+        <value>The name</value>
+    </data>
+    <data name="TextWithArticle" xml:space="preserve">
+        <value>The text</value>
+    </data>
+    <data name="TechnicalName" xml:space="preserve">
+        <value>Technical name</value>
+    </data>
+    <data name="TechnicalNameWithArticle" xml:space="preserve">
+        <value>The technical name</value>
     </data>
 </root>

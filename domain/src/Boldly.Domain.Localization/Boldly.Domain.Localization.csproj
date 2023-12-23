@@ -11,6 +11,10 @@
         <Generator>PublicResXFileCodeGenerator</Generator>
         <LastGenOutput>ValidationStrings.Designer.cs</LastGenOutput>
       </EmbeddedResource>
+      <EmbeddedResource Update="CommonStrings.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+        <LastGenOutput>CommonStrings.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
@@ -18,6 +22,11 @@
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
         <DependentUpon>ValidationStrings.resx</DependentUpon>
+      </Compile>
+      <Compile Update="CommonStrings.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>CommonStrings.resx</DependentUpon>
       </Compile>
     </ItemGroup>
 

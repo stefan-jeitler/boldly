@@ -20,5 +20,5 @@ module Name =
 
     let private validator = minLengthValidator >=> maxLengthValidator
 
-    let name = create ValidationStrings.Name singleLineTrimmed validator Name
+    let name = create CommonStrings.NameWithArticle singleLineTrimmed validator Name
     let create = name

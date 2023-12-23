@@ -4,6 +4,10 @@
         <TargetFramework>net8.0</TargetFramework>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="Semver" Version="3.0.0-beta.1" />
+    </ItemGroup>
 
     <ItemGroup>
       <Compile Include="Common\Types.fs" />
@@ -11,6 +15,8 @@
       <Compile Include="Common\Name.fs" />
       <Compile Include="AccountAdministration\Email.fs" />
       <Compile Include="AccountAdministration\User.fs" />
+      <Compile Include="Versioning\TechnicalName.fs" />
+      <Compile Include="Versioning\Text.fs" />
       <Compile Include="Versioning\Types.fs" />
     </ItemGroup>
 
