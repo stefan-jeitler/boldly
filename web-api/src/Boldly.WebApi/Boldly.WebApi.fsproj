@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <InvariantGlobalization>true</InvariantGlobalization>
+        <TsClientsOutput>../../../client-app/src/api-clients</TsClientsOutput>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
+        <PackageReference Include="NSwag.CodeGeneration.TypeScript" Version="14.0.0-preview010"/>
+        <PackageReference Include="Serilog.AspNetCore" Version="8.0.0"/>
+        <PackageReference Include="Asp.Versioning.Mvc" Version="7.1.0"/>
+        <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="7.1.0"/>
+        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0"/>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <Compile Include="OpenApi\OpenApiDocumentsConfiguration.fs" />
+        <Compile Include="Clients\ClientGenerator.fs" />
+        <TypeScriptCompile Include="Clients\change-blog.client.V1.ts" />
+        <Compile Include="Features\Accounts\V1\DTOs.fs" />
+        <Compile Include="Features\Accounts\V1\AccountController.fs" />
+        <Compile Include="Features\Products\V1\DTOs.fs" />
+        <Compile Include="Features\Products\V1\ProductsController.fs" />
+        <Compile Include="Features\HomeController.fs" />
+        <Compile Include="Modules\RootModule.fs" />
+        <Compile Include="Startup.fs" />
+        <Compile Include="Program.fs" />
+    </ItemGroup>
+
+</Project>

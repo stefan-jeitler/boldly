@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Include="Common\Types.fs" />
+      <Compile Include="Common\WrappedString.fs" />
+      <Compile Include="Common\Name.fs" />
+      <Compile Include="AccountAdministration\Email.fs" />
+      <Compile Include="AccountAdministration\User.fs" />
+      <Compile Include="Versioning\Types.fs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Boldly.Domain.Localization\Boldly.Domain.Localization.csproj" />
+    </ItemGroup>
+
+</Project>
