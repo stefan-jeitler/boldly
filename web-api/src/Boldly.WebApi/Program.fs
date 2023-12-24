@@ -41,7 +41,7 @@ module Program =
         let command =
             Command("generate-ts-client", "Generates a TS Client for the api's endpoints")
 
-        let fileOption = Option<FileInfo>([| "--file"; "-f" |], "Output file")
+        let fileOption = Option<FileInfo>("--file", "Output file")
 
         let generateClient file =
             run args (fun app -> ClientGenerator.generateTsClient app.Services file)
