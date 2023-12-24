@@ -2,33 +2,22 @@
 
 open System
 open Boldly.Domain.Common
-open Boldly.Domain.Common.Types
 open Semver
 
 type VersionId = VersionId of Guid
 type ProductId = ProductId of Guid
 type UserId = UserId of Guid
+type EnvironmentId = EnvironmentId of Guid
 
 type VersionValue =
     | SemanticVersion of SemVersion
-    | UserDefinedVersioningScheme of Name
-    | FreeValue of Name
+    | UserDefinedVersioningScheme of Text
+    | FreeValue of Text
 
 type VersionState =
     | Candidate
     | Deleted of DateTime
     | Released of DateTime
-
-[<NoEquality; NoComparison>]
-type Version =
-    { Id: VersionId
-      ProductId: ProductId
-      Environment: Name
-      Value: VersionValue
-      State: VersionState
-      Name: Name option
-      CreatedBy: UserId
-      CreatedAt: DateTime }
 
 type ChangeId = ChangeId of Guid
 
@@ -36,24 +25,26 @@ type ChangeState =
     | Pending
     | Assigned of VersionId
 
+// based on: https://keepachangelog.com/en/1.0.0/
 type DefaultChangeType =
-    | Feature
-    | Bugfix
+    | Added
+    | Changed
+    | Deprecated
+    | Fixed
     | Security
-    | Removed
-    | Docs
 
 type ChangeTypes =
-    | Default of NonEmptySet<DefaultChangeType>
-    | UserDefined of NonEmptySet<TechnicalName>
-    | FreeText of NonEmptySet<TechnicalName>
+    | Default of DefaultChangeType list
+    | UserDefined of TechnicalName list
+    | FreeText of TechnicalName list
 
 [<NoComparison; NoEquality>]
 type Issue = {
-    Id: string
+    Id: TechnicalName
     Link: Uri option
 }
 
+[<NoEquality; NoComparison>]
 type Change = {
     Id: ChangeId
     ProductId: ProductId
@@ -61,8 +52,19 @@ type Change = {
     Text: Text
     Types: ChangeTypes
     Issues: Issue list
-    Index: uint
     CreatedBy: UserId
     CreatedAt: DateTime
 }
+
+[<NoEquality; NoComparison>]
+type Version =
+    { Id: VersionId
+      ProductId: ProductId
+      EnvironmentId: EnvironmentId
+      Value: VersionValue
+      State: VersionState
+      Name: Name option
+      Changes: Change list
+      CreatedBy: UserId
+      CreatedAt: DateTime }
 
