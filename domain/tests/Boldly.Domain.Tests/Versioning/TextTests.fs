@@ -7,9 +7,9 @@ open Xunit
 open Boldly.Domain.Versioning.Text
 
 [<Fact>]
-let ``A text with more than 500 characters is not allowed`` () = 
-    let tooLongText = text (String('a', 501))
-    let expectedResult = "The length must be 500 characters or fewer"
+let ``A text with more than 4000 characters is not allowed`` () = 
+    let tooLongText = text (String('a', 4001))
+    let expectedResult = "The length must be 4000 characters or fewer"
     
     match tooLongText with
     | Ok t -> ResultAssert.okNotExpected t

@@ -13,10 +13,10 @@ type Name =
 module Name =
 
     let minLength = 2
-    let private minLengthValidator = (minLengthValidator minLength)
+    let private minLengthValidator = minLengthValidator minLength
 
     let maxLength = 50
-    let private maxLengthValidator = (maxLengthValidator maxLength)
+    let private maxLengthValidator = maxLengthValidator maxLength
 
     let private validator = minLengthValidator >=> maxLengthValidator
 

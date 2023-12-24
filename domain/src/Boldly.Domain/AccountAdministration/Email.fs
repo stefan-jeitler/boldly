@@ -14,10 +14,6 @@ type Email =
 
 module Email =
 
-    let minLength = 3
-    let private minLengthValidator =
-        (minLengthValidator minLength CommonStrings.Email)
-
     let maxLength = 254
     let private maxLengthValidator = maxLengthValidator maxLength
 

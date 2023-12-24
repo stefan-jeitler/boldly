@@ -83,7 +83,7 @@ let ``Control characters in names will be replaced with whitespaces``
     =
     match name candidate with
     | Ok n -> Assert.Equal(expectedName, WrappedString.value n)
-    | Error e -> Assert.Fail($"Expected Ok, but got an error '{e}'")
+    | Error e -> ResultAssert.errorNotExpected e
 
 [<Theory>]
 [<InlineData("Stefan ", "Stefan")>]
@@ -95,4 +95,4 @@ let ``Leading and trailing whitespaces in names will be removed``
     =
     match name candidate with
     | Ok n -> Assert.Equal(expectedName, WrappedString.value n)
-    | Error e -> Assert.Fail($"Expected Ok, but got an error '{e}'")
+    | Error e -> ResultAssert.errorNotExpected e

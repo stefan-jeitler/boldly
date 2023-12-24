@@ -35,7 +35,7 @@ let ``A technical name with two characters is OK`` () =
     | Error e -> ResultAssert.errorNotExpected e
 
 [<Fact>]
-let ``A technical name with more than 32 characters is too long`` () =
+let ``A technical name with more than 50 characters is too long`` () =
     let tooLongName = technicalName (String('a', 51))
     let expected = "The length must be 50 characters or fewer"
 
@@ -88,3 +88,11 @@ let ``Technical names have structural equality`` () =
     match tn1, tn2 with
     | Ok left, Ok right -> Assert.True((left = right))
     | Error error, _ | _, Error error -> ResultAssert.errorNotExpected error
+
+[<Fact>]
+let ``Leading and trailing whitespaces get removed`` () = 
+    let technicalNameWithLeadingAndTrailingWhitespace = technicalName " ABC "
+    
+    match technicalNameWithLeadingAndTrailingWhitespace with
+    | Ok tn -> Assert.Equal("ABC", WrappedString.value tn)
+    | Error e -> ResultAssert.errorNotExpected e 

@@ -12,8 +12,8 @@ type Text =
 
 module Text =
 
-    let maxLength = 500
-    let private maxLengthValidator = (maxLengthValidator maxLength)
+    let maxLength = 4000
+    let private maxLengthValidator = maxLengthValidator maxLength
 
     let text = create CommonStrings.TextWithArticle id maxLengthValidator Text
     let create = text
