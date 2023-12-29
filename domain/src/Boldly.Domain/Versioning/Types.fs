@@ -2,13 +2,10 @@
 
 open System
 open Boldly.Domain.Common
+open Boldly.Domain.Versioning.AccountAdministration
 open Semver
 
 type VersionId = VersionId of Guid
-type ProductId = ProductId of Guid
-type UserId = UserId of Guid
-type EnvironmentId = EnvironmentId of Guid
-
 type VersionValue =
     | SemanticVersion of SemVersion
     | UserDefinedVersioningScheme of Text
@@ -16,7 +13,7 @@ type VersionValue =
 
 type VersionState =
     | Candidate
-    | Deleted of DateTime
+    | Deleted of (DateTime)
     | Released of DateTime
 
 type ChangeId = ChangeId of Guid
@@ -30,13 +27,14 @@ type DefaultChangeType =
     | Added
     | Changed
     | Deprecated
+    | Removed
     | Fixed
     | Security
 
 type ChangeTypes =
     | Default of DefaultChangeType list
-    | UserDefined of TechnicalName list
-    | FreeText of TechnicalName list
+    | UserDefined of Name list
+    | FreeText of Name list
 
 [<NoComparison; NoEquality>]
 type Issue = {
@@ -47,7 +45,7 @@ type Issue = {
 [<NoEquality; NoComparison>]
 type Change = {
     Id: ChangeId
-    ProductId: ProductId
+    ApplicationId: ApplicationId
     State: ChangeState
     Text: Text
     Types: ChangeTypes
@@ -57,14 +55,14 @@ type Change = {
 }
 
 [<NoEquality; NoComparison>]
-type Version =
-    { Id: VersionId
-      ProductId: ProductId
+type Version = {
+      Id: VersionId
+      ApplicationId: ApplicationId
       EnvironmentId: EnvironmentId
       Value: VersionValue
       State: VersionState
       Name: Name option
       Changes: Change list
       CreatedBy: UserId
-      CreatedAt: DateTime }
-
+      CreatedAt: DateTime
+}

@@ -17,7 +17,11 @@
       <Compile Include="AccountAdministration\User.fs" />
       <Compile Include="Versioning\TechnicalName.fs" />
       <Compile Include="Versioning\Text.fs" />
+      <Compile Include="Versioning\AccountAdministration.Types.fs" />
       <Compile Include="Versioning\Types.fs" />
+      <Compile Include="Versioning\UseCases\Model.Types.fs" />
+      <Compile Include="Versioning\UseCases\DataAccess.Types.fs" />
+      <Compile Include="Versioning\UseCases\AddVersion.fs" />
     </ItemGroup>
 
     <ItemGroup>

@@ -1,0 +1,1 @@
+﻿module Boldly.Domain.Versioning.UseCases.Models
