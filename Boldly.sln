@@ -18,6 +18,16 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Boldly.WebApi", "web-api\sr
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Boldly.WebApi.Tests", "web-api\tests\Boldly.WebApi.Tests\Boldly.WebApi.Tests.fsproj", "{AE672233-65D9-4347-AD87-80AB05D222B3}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Boldly.DataAccess.Postgres", "data-access\src\Boldly.DataAccess.Postgres\Boldly.DataAccess.Postgres.fsproj", "{79146E0F-2F5D-46D3-AA8A-9D0634D62DAC}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Boldly.DataAccess.SqlServer", "data-access\src\Boldly.DataAccess.SqlServer\Boldly.DataAccess.SqlServer.fsproj", "{6F08F418-ED7F-4C99-BD95-F873CCB43703}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Boldly.DataAccess.Postgres.Tests", "data-access\tests\Boldly.DataAccess.Postgres.Tests\Boldly.DataAccess.Postgres.Tests.fsproj", "{9AD76224-CE47-454B-B4CD-00AB93F3CBEC}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Boldly.DataAccess.SqlServer.Tests", "data-access\tests\Boldly.DataAccess.SqlServer.Tests\Boldly.DataAccess.SqlServer.Tests.fsproj", "{BE4C43A8-595F-4BA1-B4C6-51F255E3EFD9}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Boldly.DataAccess.DbUpdater", "data-access\src\Boldly.DataAccess.DbUpdater\Boldly.DataAccess.DbUpdater.fsproj", "{1D0FE6FA-221E-42A4-B687-48E8B2471ED7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +39,11 @@ Global
 		{F7F486BC-9206-4D67-A9B5-30D7450210C5} = {D0F170DB-590D-4C15-98B8-BBB5BD672D8A}
 		{8B35BC59-69EB-4423-BBC4-824FE0D2E7D8} = {859E42F3-3CEC-419B-A958-88142B8ADF10}
 		{AE672233-65D9-4347-AD87-80AB05D222B3} = {859E42F3-3CEC-419B-A958-88142B8ADF10}
+		{79146E0F-2F5D-46D3-AA8A-9D0634D62DAC} = {105867EB-58B1-4AB2-B4D2-CAE62D62A648}
+		{6F08F418-ED7F-4C99-BD95-F873CCB43703} = {105867EB-58B1-4AB2-B4D2-CAE62D62A648}
+		{9AD76224-CE47-454B-B4CD-00AB93F3CBEC} = {105867EB-58B1-4AB2-B4D2-CAE62D62A648}
+		{BE4C43A8-595F-4BA1-B4C6-51F255E3EFD9} = {105867EB-58B1-4AB2-B4D2-CAE62D62A648}
+		{1D0FE6FA-221E-42A4-B687-48E8B2471ED7} = {105867EB-58B1-4AB2-B4D2-CAE62D62A648}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{5E88CB03-47AF-4B44-ABC7-AE674A8461E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -51,5 +66,25 @@ Global
 		{AE672233-65D9-4347-AD87-80AB05D222B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE672233-65D9-4347-AD87-80AB05D222B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE672233-65D9-4347-AD87-80AB05D222B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79146E0F-2F5D-46D3-AA8A-9D0634D62DAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79146E0F-2F5D-46D3-AA8A-9D0634D62DAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79146E0F-2F5D-46D3-AA8A-9D0634D62DAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79146E0F-2F5D-46D3-AA8A-9D0634D62DAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F08F418-ED7F-4C99-BD95-F873CCB43703}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F08F418-ED7F-4C99-BD95-F873CCB43703}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F08F418-ED7F-4C99-BD95-F873CCB43703}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F08F418-ED7F-4C99-BD95-F873CCB43703}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AD76224-CE47-454B-B4CD-00AB93F3CBEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AD76224-CE47-454B-B4CD-00AB93F3CBEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AD76224-CE47-454B-B4CD-00AB93F3CBEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AD76224-CE47-454B-B4CD-00AB93F3CBEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE4C43A8-595F-4BA1-B4C6-51F255E3EFD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE4C43A8-595F-4BA1-B4C6-51F255E3EFD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE4C43A8-595F-4BA1-B4C6-51F255E3EFD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE4C43A8-595F-4BA1-B4C6-51F255E3EFD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D0FE6FA-221E-42A4-B687-48E8B2471ED7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D0FE6FA-221E-42A4-B687-48E8B2471ED7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D0FE6FA-221E-42A4-B687-48E8B2471ED7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D0FE6FA-221E-42A4-B687-48E8B2471ED7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

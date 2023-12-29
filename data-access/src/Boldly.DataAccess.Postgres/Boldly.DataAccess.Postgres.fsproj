@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\domain\src\Boldly.Domain\Boldly.Domain.fsproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Versioning\" />
+      <Folder Include="PlatformAdministration\" />
+    </ItemGroup>
+
+</Project>
