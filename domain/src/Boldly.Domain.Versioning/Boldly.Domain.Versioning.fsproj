@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Semver" Version="3.0.0-beta.1" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\Boldly.Domain.Common\Boldly.Domain.Common.fsproj" />
+      <ProjectReference Include="..\Boldly.Domain.Localization\Boldly.Domain.Localization.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Include="TechnicalName.fs" />
+      <Compile Include="Text.fs" />
+      <Compile Include="PlatformAdministration.Types.fs" />
+      <Compile Include="Types.fs" />
+      <Compile Include="UseCases\DataAccess.Types.fs" />
+      <Compile Include="UseCases\AddVersion.fs" />
+    </ItemGroup>
+
+</Project>

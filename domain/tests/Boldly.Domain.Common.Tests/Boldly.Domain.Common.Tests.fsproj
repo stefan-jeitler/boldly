@@ -10,13 +10,8 @@
 
     <ItemGroup>
         <Compile Include="ResultAssert.fs" />
-        <Folder Include="TestData\" />
-        <Folder Include="TestDoubles\" />
-        <Compile Include="Common\NameTests.fs" />
-        <Compile Include="AccountAdministration\EmailTests.fs" />
-        <Compile Include="Versioning\TextTests.fs" />
-        <Compile Include="Versioning\TechnicalNameTests.fs" />
-        <Compile Include="Program.fs" />
+        <Compile Include="NameTests.fs" />
+        <Compile Include="Program.fs"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -33,7 +28,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\Boldly.Domain\Boldly.Domain.fsproj" />
+      <ProjectReference Include="..\..\src\Boldly.Domain.Common\Boldly.Domain.Common.fsproj" />
     </ItemGroup>
 
 </Project>

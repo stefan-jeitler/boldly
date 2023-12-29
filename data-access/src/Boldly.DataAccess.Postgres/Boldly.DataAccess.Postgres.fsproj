@@ -6,10 +6,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\domain\src\Boldly.Domain\Boldly.Domain.fsproj" />
-    </ItemGroup>
-
-    <ItemGroup>
       <Folder Include="Versioning\" />
       <Folder Include="PlatformAdministration\" />
     </ItemGroup>
