@@ -1,4 +1,4 @@
-﻿namespace Boldly.Domain.AccountAdministration
+﻿namespace Boldly.Domain.PlatformAdministration
 
 open System.Text.RegularExpressions
 open Boldly.Domain.Localization

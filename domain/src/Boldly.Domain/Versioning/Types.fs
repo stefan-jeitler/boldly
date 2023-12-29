@@ -2,7 +2,7 @@
 
 open System
 open Boldly.Domain.Common
-open Boldly.Domain.Versioning.AccountAdministration
+open Boldly.Domain.Versioning.PlatformAdministration
 open Semver
 
 type VersionId = VersionId of Guid
@@ -13,7 +13,7 @@ type VersionValue =
 
 type VersionState =
     | Candidate
-    | Deleted of (DateTime)
+    | Deleted of DateTime
     | Released of DateTime
 
 type ChangeId = ChangeId of Guid

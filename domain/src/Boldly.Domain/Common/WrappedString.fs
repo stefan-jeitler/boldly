@@ -11,7 +11,7 @@ type IWrappedString =
 
 let create (notEmptyErrorPrefix: string) canonicalize validate ctor (candidate: string) =
     if candidate = null then
-        Error(String.Format(ValidationStrings.EmptyError, notEmptyErrorPrefix))
+        Error (String.Format(ValidationStrings.EmptyError, notEmptyErrorPrefix))
     else
         let c = canonicalize candidate
 
@@ -32,10 +32,10 @@ let singleLineTrimmed candidate =
 
 let minLengthValidator minLength (candidate: string) =
     match candidate.Length with
-    | l when l < minLength -> Error(String.Format(ValidationStrings.MinLengthNotReachedError, minLength))
+    | l when l < minLength -> Error (String.Format(ValidationStrings.MinLengthNotReachedError, minLength))
     | _ -> Ok(candidate)
 
 let maxLengthValidator maxLength (candidate: string) =
     match candidate.Length with
-    | l when l > maxLength -> Error(String.Format(ValidationStrings.MaxLengthExceededError, maxLength))
+    | l when l > maxLength -> Error (String.Format(ValidationStrings.MaxLengthExceededError, maxLength))
     | _ -> Ok(candidate)

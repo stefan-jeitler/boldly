@@ -1,8 +1,7 @@
-﻿module Boldly.Domain.Versioning.AccountAdministration
+﻿module Boldly.Domain.Versioning.PlatformAdministration
 
 open System
 open Boldly.Domain.Common
-
 
 type ApplicationId = ApplicationId of Guid
 type EnvironmentId = EnvironmentId of Guid
