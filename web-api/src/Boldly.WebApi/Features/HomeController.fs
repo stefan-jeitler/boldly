@@ -21,7 +21,7 @@ type ApiInfo =
 type HomeController(hostEnvironment: IHostEnvironment) =
     inherit ControllerBase()
 
-    let apiVersion =
+    static let apiVersion =
         lazy
             (let executingAssembly = Assembly.GetExecutingAssembly()
 
