@@ -20,10 +20,8 @@
         <Compile Include="OpenApi\OpenApiDocumentsConfiguration.fs" />
         <Compile Include="Clients\ClientGenerator.fs" />
         <TypeScriptCompile Include="Clients\change-blog.client.V1.ts" />
-        <Compile Include="Features\Accounts\V1\DTOs.fs" />
-        <Compile Include="Features\Accounts\V1\AccountController.fs" />
-        <Compile Include="Features\Products\V1\DTOs.fs" />
-        <Compile Include="Features\Products\V1\ProductsController.fs" />
+        <Compile Include="Features\Application\V1\Dto.Types.fs" />
+        <Compile Include="Features\Application\V1\ApplicationsController.fs" />
         <Compile Include="Features\HomeController.fs" />
         <Compile Include="Modules\RootModule.fs" />
         <Compile Include="Startup.fs" />

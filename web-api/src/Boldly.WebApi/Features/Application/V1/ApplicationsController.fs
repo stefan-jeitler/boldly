@@ -1,26 +1,26 @@
-﻿namespace Boldly.WebApi.Features.Account.V1
+﻿module Boldly.WebApi.Features.Application.V1.ApplicationsController
 
 open System
 open System.Net.Mime
 open Asp.Versioning
+open Boldly.WebApi.Features.Application.V1.Dto
 open Microsoft.AspNetCore.Http
 open Microsoft.AspNetCore.Mvc
-open Boldly.WebApi.Features.Account.V1.DTOs
 
 [<ApiController>]
 [<ApiVersion("1.0")>]
 [<Route("api/v{version:apiVersion}/[controller]")>]
 [<Produces(MediaTypeNames.Application.Json)>]
-type AccountController() =
+type ApplicationsController() =
     inherit ControllerBase()
 
-    [<HttpGet(Name = "GetAccount")>]
-    [<ProducesResponseType(typeof<AccountDto>, StatusCodes.Status200OK)>]
+    [<HttpGet(Name = "GetApplications")>]
+    [<ProducesResponseType(typeof<ApplicationDto>, StatusCodes.Status200OK)>]
     member _.Get() : ActionResult =
 
-        let dummyAccount: AccountDto = {
+        let dummyAccount: ApplicationDto = {
+            Id = Guid.NewGuid()
             Name = "Some Account"
-            CreatedAt = DateTimeOffset.UtcNow
         }
 
         base.Ok(dummyAccount)
