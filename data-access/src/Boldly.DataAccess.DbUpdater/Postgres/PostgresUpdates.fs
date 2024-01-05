@@ -19,7 +19,5 @@ let private (>>>) (a: NpgsqlConnection -> unit) (b: NpgsqlConnection -> unit) =
 let updates: PostgresDbUpdate list =
     [ { Version = v "0.0.0"
         Update = Uuid.enableUuids >>> Functions.createGuidFunction }
-      {
-        Version = v "0.0.1"
-        Update = Version.create  }
-     ]
+      { Version = v "0.0.1"
+        Update = Version.create } ]

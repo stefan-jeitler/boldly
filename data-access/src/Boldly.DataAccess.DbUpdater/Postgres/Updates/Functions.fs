@@ -11,5 +11,5 @@ CREATE OR REPLACE FUNCTION GUID() RETURNS uuid
 AS 'select uuid_generate_v4();'
 LANGUAGE SQL
 """
-    
+
     dbConnection.Execute(createGuidFunctionSql) |> ignore
