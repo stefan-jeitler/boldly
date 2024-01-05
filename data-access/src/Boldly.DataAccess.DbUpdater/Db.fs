@@ -3,10 +3,11 @@
 open System.Data
 open Dapper
 open Microsoft.Data.SqlClient
+open Npgsql
 open Semver
 
 module SqlServer =
-    let tableExists (dbConnection: IDbConnection) (tableName: string) =
+    let tableExists (dbConnection: SqlConnection) (tableName: string) =
         let tableExistsSql =
             """
                 SELECT IIF(exists (SELECT NULL
@@ -22,7 +23,7 @@ module SqlServer =
     let dbName (dbConnection: IDbConnection) =
         dbConnection.ExecuteScalar<string>("SELECT DB_NAME()")
 
-    let latestSchemaVersion (dbConnection: IDbConnection) =
+    let latestSchemaVersion (dbConnection: SqlConnection) =
         let tableExists = tableExists dbConnection "SchemaVersion"
 
         if not tableExists then
@@ -35,7 +36,7 @@ module SqlServer =
             | null -> None
             | v -> Some(SemVersion.Parse(v, SemVersionStyles.Strict))
 
-    let createSchemaVersionTable (dbConnection: IDbConnection) =
+    let createSchemaVersionTable (dbConnection: SqlConnection) =
         let tableExists = tableExists dbConnection "SchemaVersion"
 
         let createSchemaVersionSql =
@@ -65,3 +66,62 @@ CREATE TABLE SchemaVersion
         match updated with
         | 0 -> dbConnection.Execute(insertSql, parameter) |> ignore
         | _ -> ()
+
+module Postgres =
+    let tableExists (dbConnection: NpgsqlConnection) (tableName: string) =
+        let tableExistsSql =
+            """
+            SELECT EXISTS (
+                SELECT FROM information_schema.tables
+                WHERE table_name = @tableName
+            )"""
+
+        let parameters = {| tableName = tableName.ToLower() |} 
+
+        dbConnection.ExecuteScalar<bool>(tableExistsSql, parameters)
+
+    let latestSchemaVersion (dbConnection: NpgsqlConnection) =
+        let tableExists = tableExists dbConnection "schema_version"
+
+        if not tableExists then
+            None
+        else
+            let versionSql = "SELECT version FROM schema_version"
+            let latestVersion = dbConnection.ExecuteScalar<string>(versionSql)
+
+            match latestVersion with
+            | null -> None
+            | v -> Some(SemVersion.Parse(v, SemVersionStyles.Strict))
+            
+    let createSchemaVersionTable (dbConnection: NpgsqlConnection) =
+        let tableExists = tableExists dbConnection "schema_version"
+
+        let createSchemaVersionSql = """
+CREATE TABLE IF NOT EXISTS schema_version
+(
+    version text CONSTRAINT schemaversion_version_nn NOT NULL,
+    updated_at TIMESTAMP CONSTRAINT schemaversion_updatedat_nn NOT NULL
+)"""
+
+        if tableExists then
+            0
+        else
+            dbConnection.Execute(createSchemaVersionSql)
+    
+    let updateSchemaVersion (dbConnection: NpgsqlConnection) (version: SemVersion) =
+        let updateSql =
+            "UPDATE schema_version SET version = @version, updated_at = now()"
+
+        let insertSql = "INSERT INTO schema_version (version, updated_at) VALUES(@version, now())"
+
+        let parameter = {| version = version.ToString() |}
+
+        let updated = dbConnection.Execute(updateSql, parameter)
+
+        match updated with
+        | 0 -> dbConnection.Execute(insertSql, parameter) |> ignore
+        | _ -> ()
+    
+
+    let dbName (dbConnection: NpgsqlConnection) =
+        dbConnection.ExecuteScalar<string>("SELECT current_database()")

@@ -1,7 +1,6 @@
 ﻿open System
 open System.CommandLine
 open System.CommandLine.Invocation
-open Boldly.DataAccess.DbUpdater
 open Boldly.DataAccess.DbUpdater.DbUpdatesRunner
 open Microsoft.Data.SqlClient
 open Microsoft.Extensions.Configuration

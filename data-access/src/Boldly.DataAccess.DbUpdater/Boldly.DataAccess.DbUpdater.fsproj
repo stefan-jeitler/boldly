@@ -21,10 +21,10 @@
     </ItemGroup>
     
     <ItemGroup>
-        <Compile Include="Types.fs" />
         <Compile Include="Db.fs" />
         <Compile Include="Postgres\Updates\Version.fs" />
         <Compile Include="Postgres\Updates\Uuid.fs" />
+        <Compile Include="Postgres\Updates\Functions.fs" />
         <Compile Include="Postgres\PostgresUpdates.fs" />
         <Compile Include="SqlServer\Updates\Version.fs" />
         <Compile Include="SqlServer\SqlServerUpdates.fs" />

@@ -12,12 +12,12 @@ CREATE TABLE Version
     Id UNIQUEIDENTIFIER CONSTRAINT Version_Id_PK PRIMARY KEY,
     ApplicationId UNIQUEIDENTIFIER CONSTRAINT Version_ApplicationId_NN NOT NULL,
     EnvironmentId UNIQUEIDENTIFIER CONSTRAINT Version_EnvironmentId_NN NOT NULL,
-    VersionLabel VARCHAR(4000) CONSTRAINT Version_VersionLabel_NN NOT NULL,
+    VersionDiscriminator VARCHAR(4000) CONSTRAINT Version_VersionDiscriminator_NN NOT NULL,
     VersionValue VARCHAR(4000) CONSTRAINT Version_VersionValue_NN NOT NULL,
-    State VARCHAR(4000) CONSTRAINT Version_State_NN NOT NULL,
+    StateDiscriminator VARCHAR(4000) CONSTRAINT Version_StateDiscriminator_NN NOT NULL,
     StateValue DATETIME2,
     Name VARCHAR(50),
-    CreatedBy UNIQUEIDENTIFIER CONSTRAINT Version_CreatedBy_NN NOT NULL,
+    CreatedByUser UNIQUEIDENTIFIER CONSTRAINT Version_CreatedByUser_NN NOT NULL,
     CreatedAt DATETIME2 CONSTRAINT Version_CreatedAt_NN NOT NULL
 )
 """
