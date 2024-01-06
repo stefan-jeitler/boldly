@@ -29,6 +29,7 @@
         <Compile Include="SqlServer\Updates\Version.fs" />
         <Compile Include="SqlServer\SqlServerUpdates.fs" />
         <Compile Include="DbUpdatesRunner.fs" />
+        <Compile Include="DbUpdatesAnalysis.fs" />
         <Compile Include="Program.fs" />
         <Content Include="appsettings.json">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

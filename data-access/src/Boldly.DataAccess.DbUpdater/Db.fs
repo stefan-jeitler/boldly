@@ -2,11 +2,11 @@
 
 open System.Data
 open Dapper
-open Microsoft.Data.SqlClient
-open Npgsql
 open Semver
 
 module SqlServer =
+    open Microsoft.Data.SqlClient
+
     let tableExists (dbConnection: SqlConnection) (tableName: string) =
         let tableExistsSql =
             """
@@ -16,7 +16,7 @@ module SqlServer =
                                      AND TABLE_NAME = @tableName), 1, 0)
             """
 
-        let parameters = {| tableName = tableName.ToLower() |}
+        let parameters = {| tableName = tableName |}
 
         dbConnection.ExecuteScalar<bool>(tableExistsSql, parameters)
 
@@ -68,6 +68,8 @@ CREATE TABLE SchemaVersion
         | _ -> ()
 
 module Postgres =
+    open Npgsql
+
     let tableExists (dbConnection: NpgsqlConnection) (tableName: string) =
         let tableExistsSql =
             """
@@ -76,7 +78,7 @@ module Postgres =
                 WHERE table_name = @tableName
             )"""
 
-        let parameters = {| tableName = tableName.ToLower() |} 
+        let parameters = {| tableName = tableName |} 
 
         dbConnection.ExecuteScalar<bool>(tableExistsSql, parameters)
 

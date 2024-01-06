@@ -7,7 +7,7 @@ open Npgsql
 open Semver
 open Serilog.Core
 
-type DbUpdate =
+type private DbUpdate =
     { Version: SemVersion
       Update: unit -> unit
       UpdateSchemaVersion: SemVersion -> unit }
@@ -26,7 +26,7 @@ let private findDuplicates (updates: DbUpdate list) =
         | v, u when u.Length > 1 -> Some v
         | _ -> None)
 
-let runUniqueUpdates
+let private runUniqueUpdates
     (logger: Logger)
     (getLatestSchemaVersion: unit -> SemVersion option)
     (updates: DbUpdate list)
@@ -46,14 +46,14 @@ let runUniqueUpdates
         |> Seq.toList
 
     match executedUpdates with
-    | [] -> logger.Information("No database updates to execute")
+    | [] -> logger.Information("No database updates to apply")
     | u ->
         let latestSchemaVersionAfterUpdate =
             getLatestSchemaVersion()
             |> Option.map _.ToString()
             |> Option.defaultValue "N/A"
 
-        logger.Information("{count} db update(s) executed.", u.Length)
+        logger.Information("{count} db update(s) applied.", u.Length)
         logger.Information("Latest schema version: {version}", latestSchemaVersionAfterUpdate)
 
     ()
