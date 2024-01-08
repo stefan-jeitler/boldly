@@ -36,6 +36,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Boldly.Domain.Common", "dom
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Boldly.Domain.Common.Tests", "domain\tests\Boldly.Domain.Common.Tests\Boldly.Domain.Common.Tests.fsproj", "{CB717B87-A56A-49D7-9187-9104D3852A42}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Boldly.Domain.Adapters", "domain\src\Boldly.Domain.Adapters\Boldly.Domain.Adapters.fsproj", "{D17DD4D8-CF8C-4088-A959-47AFBA268A9A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,7 @@ Global
 		{7B5105D2-F087-4A56-8305-34A29222E79E} = {D0F170DB-590D-4C15-98B8-BBB5BD672D8A}
 		{5919A830-F990-49A6-98CF-C45E145D0C63} = {D0F170DB-590D-4C15-98B8-BBB5BD672D8A}
 		{CB717B87-A56A-49D7-9187-9104D3852A42} = {D0F170DB-590D-4C15-98B8-BBB5BD672D8A}
+		{D17DD4D8-CF8C-4088-A959-47AFBA268A9A} = {D0F170DB-590D-4C15-98B8-BBB5BD672D8A}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{F7F486BC-9206-4D67-A9B5-30D7450210C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -114,5 +117,9 @@ Global
 		{CB717B87-A56A-49D7-9187-9104D3852A42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB717B87-A56A-49D7-9187-9104D3852A42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB717B87-A56A-49D7-9187-9104D3852A42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D17DD4D8-CF8C-4088-A959-47AFBA268A9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D17DD4D8-CF8C-4088-A959-47AFBA268A9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D17DD4D8-CF8C-4088-A959-47AFBA268A9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D17DD4D8-CF8C-4088-A959-47AFBA268A9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

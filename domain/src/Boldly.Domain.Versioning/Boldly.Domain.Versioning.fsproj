@@ -6,6 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="FsToolkit.ErrorHandling" Version="4.14.0" />
         <PackageReference Include="Semver" Version="3.0.0-beta.1" />
     </ItemGroup>
     
@@ -15,11 +16,20 @@
     </ItemGroup>
 
     <ItemGroup>
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+            <_Parameter1>$(AssemblyName).Tests</_Parameter1>
+        </AssemblyAttribute>
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+            <_Parameter1>DynamicProxyGenAssembly2</_Parameter1>
+        </AssemblyAttribute>
+    </ItemGroup>
+
+    <ItemGroup>
       <Compile Include="TechnicalName.fs" />
       <Compile Include="Text.fs" />
-      <Compile Include="PlatformAdministration.Types.fs" />
+      <Compile Include="PlatformAdministration.fs" />
       <Compile Include="Types.fs" />
-      <Compile Include="UseCases\DataAccess.Types.fs" />
+      <Compile Include="UseCases\DataAccess.fs" />
       <Compile Include="UseCases\AddVersion.fs" />
     </ItemGroup>
 

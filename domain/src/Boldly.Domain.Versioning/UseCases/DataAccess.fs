@@ -3,5 +3,6 @@
 open Boldly.Domain.Common.Types
 open Boldly.Domain.Versioning.Types
 
-type FindVersion = VersionValue -> AsyncOption<Version>
+module Version =
+    type FindVersion = string -> AsyncOption<Version>
 

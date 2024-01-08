@@ -5,15 +5,18 @@ open Boldly.DataAccess.DbUpdater.SqlServer
 open Semver
 open Serilog.Core
 
-let containsBreakingChanges (logger: Logger) (dbName: string) (updates: SemVersion list) (latestSchemaVersion: SemVersion) =
-    let latestDbUpdatesVersion =
-        updates
-        |> List.max
+let private containsBreakingChanges
+    (logger: Logger)
+    (dbName: string)
+    (updates: SemVersion list)
+    (latestSchemaVersion: SemVersion)
+    =
+    let latestDbUpdatesVersion = updates |> List.max
 
     logger.Information("Selected database: {dbName}", dbName)
     logger.Verbose("Latest db version: {dbVersion}", latestSchemaVersion.ToString())
     logger.Verbose("Latest update version: {updatesVersion}", latestDbUpdatesVersion.ToString())
-    
+
     if latestSchemaVersion.Major <> latestDbUpdatesVersion.Major then
         logger.Information("Breaking changes detected.")
         true
@@ -30,10 +33,8 @@ module Postgres =
         let latestSchemaVersion = Db.Postgres.latestSchemaVersion dbConnection
 
         logger.Verbose("Check {0} for breaking changes", "Postgres")
-        let updates =
-            PostgresUpdates.updates
-            |> List.map _.Version
-        
+        let updates = PostgresUpdates.updates |> List.map _.Version
+
         match latestSchemaVersion, updates with
         | None, [] ->
             logger.Information("No updates applied yet and no updates to apply")
@@ -52,10 +53,8 @@ module SqlServer =
         let latestSchemaVersion = Db.SqlServer.latestSchemaVersion dbConnection
 
         logger.Verbose("Check {0} for breaking changes", "Postgres")
-        let updates =
-            SqlServerUpdates.updates
-            |> List.map _.Version
-        
+        let updates = SqlServerUpdates.updates |> List.map _.Version
+
         match latestSchemaVersion, updates with
         | None, [] ->
             logger.Information("No updates applied yet and no updates to apply")
@@ -64,4 +63,3 @@ module SqlServer =
             logger.Information("No updates applied yet")
             true
         | Some lsv, u -> containsBreakingChanges logger dbName u lsv
-    

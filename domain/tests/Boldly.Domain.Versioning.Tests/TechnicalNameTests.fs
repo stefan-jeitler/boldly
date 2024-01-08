@@ -17,7 +17,7 @@ let ``Valid Technical Name (Happy Path)`` () =
     | Error e -> ResultAssert.errorNotExpected e
 
 [<Fact>]
-let ``A technical name with just one character is not a valid technical name, it needs at least two characters`` () =
+let ``A technical name with just one character is not a valid name, it needs at least two characters`` () =
     let name = technicalName "a"
     let expected = "The length must be at least 2 characters"
     
@@ -25,9 +25,8 @@ let ``A technical name with just one character is not a valid technical name, it
     | Error e -> Assert.Equal(expected, e)
     | Ok n -> ResultAssert.okNotExpected n
 
-
 [<Fact>]
-let ``A technical name with two characters is OK`` () =
+let ``A technical name with two characters is Ok`` () =
     let name = technicalName "QA"
     
     match name with

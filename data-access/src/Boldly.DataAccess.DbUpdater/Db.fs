@@ -16,9 +16,7 @@ module SqlServer =
                                      AND TABLE_NAME = @tableName), 1, 0)
             """
 
-        let parameters = {| tableName = tableName |}
-
-        dbConnection.ExecuteScalar<bool>(tableExistsSql, parameters)
+        dbConnection.ExecuteScalar<bool>(tableExistsSql, {| tableName = tableName |})
 
     let dbName (dbConnection: IDbConnection) =
         dbConnection.ExecuteScalar<string>("SELECT DB_NAME()")
@@ -43,19 +41,19 @@ module SqlServer =
             """
 CREATE TABLE SchemaVersion
 (
-    Version VARCHAR(100) CONSTRAINT SchemaVersion_Version_NN NOT NULL,
+    Version NVARCHAR(100) CONSTRAINT SchemaVersion_Version_NN NOT NULL,
     UpdatedAt DATETIME2 CONSTRAINT SchemaVersion_UpdatedAt_NN NOT NULL
 )
 """
 
         if tableExists then
-            0
+            ()
         else
-            dbConnection.Execute(createSchemaVersionSql)
+            dbConnection.Execute(createSchemaVersionSql) |> ignore
 
     let updateSchemaVersion (dbConnection: SqlConnection) (version: SemVersion) =
         let updateSql =
-            "UPDATE TOP (1) SchemaVersion SET Version = @version, UpdatedAT = GETUTCDATE()"
+            "UPDATE TOP (1) SchemaVersion SET Version = @version, UpdatedAt = GETUTCDATE()"
 
         let insertSql = "INSERT INTO SchemaVersion VALUES (@version, GETUTCDATE())"
 
@@ -78,9 +76,7 @@ module Postgres =
                 WHERE table_name = @tableName
             )"""
 
-        let parameters = {| tableName = tableName |} 
-
-        dbConnection.ExecuteScalar<bool>(tableExistsSql, parameters)
+        dbConnection.ExecuteScalar<bool>(tableExistsSql, {| tableName = tableName.ToLower() |})
 
     let latestSchemaVersion (dbConnection: NpgsqlConnection) =
         let tableExists = tableExists dbConnection "schema_version"
@@ -94,27 +90,24 @@ module Postgres =
             match latestVersion with
             | null -> None
             | v -> Some(SemVersion.Parse(v, SemVersionStyles.Strict))
-            
-    let createSchemaVersionTable (dbConnection: NpgsqlConnection) =
-        let tableExists = tableExists dbConnection "schema_version"
 
-        let createSchemaVersionSql = """
+    let createSchemaVersionTable (dbConnection: NpgsqlConnection) =
+
+        let createSchemaVersionSql =
+            """
 CREATE TABLE IF NOT EXISTS schema_version
 (
     version text CONSTRAINT schemaversion_version_nn NOT NULL,
     updated_at TIMESTAMP CONSTRAINT schemaversion_updatedat_nn NOT NULL
 )"""
 
-        if tableExists then
-            0
-        else
-            dbConnection.Execute(createSchemaVersionSql)
-    
-    let updateSchemaVersion (dbConnection: NpgsqlConnection) (version: SemVersion) =
-        let updateSql =
-            "UPDATE schema_version SET version = @version, updated_at = now()"
+        dbConnection.Execute(createSchemaVersionSql)
 
-        let insertSql = "INSERT INTO schema_version (version, updated_at) VALUES(@version, now())"
+    let updateSchemaVersion (dbConnection: NpgsqlConnection) (version: SemVersion) =
+        let updateSql = "UPDATE schema_version SET version = @version, updated_at = now()"
+
+        let insertSql =
+            "INSERT INTO schema_version (version, updated_at) VALUES(@version, now())"
 
         let parameter = {| version = version.ToString() |}
 
@@ -123,7 +116,7 @@ CREATE TABLE IF NOT EXISTS schema_version
         match updated with
         | 0 -> dbConnection.Execute(insertSql, parameter) |> ignore
         | _ -> ()
-    
+
 
     let dbName (dbConnection: NpgsqlConnection) =
         dbConnection.ExecuteScalar<string>("SELECT current_database()")

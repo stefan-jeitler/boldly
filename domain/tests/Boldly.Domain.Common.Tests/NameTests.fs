@@ -18,7 +18,7 @@ let ``A name with just one character is not a valid name, it needs at least two 
     | Ok n -> ResultAssert.okNotExpected n
 
 [<Fact>]
-let ``A name with two characters is OK`` () =
+let ``A name with two characters is Ok`` () =
     let name = name "QA"
     
     match name with

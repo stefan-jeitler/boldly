@@ -2,7 +2,7 @@
 
 open System
 open Boldly.Domain.Common
-open Boldly.Domain.Versioning.PlatformAdministration
+open Boldly.Domain.Versioning.PlatformAdministration.Types
 open Semver
 
 type VersionId = VersionId of Guid
@@ -19,7 +19,7 @@ type VersionState =
 type ChangeId = ChangeId of Guid
 
 type ChangeState =
-    | Pending
+    | Pending of ApplicationId
     | Assigned of VersionId
 
 // based on: https://keepachangelog.com/en/1.0.0/
@@ -45,7 +45,6 @@ type Issue = {
 [<NoEquality; NoComparison>]
 type Change = {
     Id: ChangeId
-    ApplicationId: ApplicationId
     State: ChangeState
     Text: Text
     Types: ChangeTypes
@@ -57,8 +56,8 @@ type Change = {
 [<NoEquality; NoComparison>]
 type Version = {
       Id: VersionId
-      ApplicationId: ApplicationId
-      EnvironmentId: EnvironmentId
+      Application: Application
+      ReleasedTo: Environment list
       Value: VersionValue
       State: VersionState
       Name: Name option
