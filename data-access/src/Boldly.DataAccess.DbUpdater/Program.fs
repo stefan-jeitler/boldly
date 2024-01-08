@@ -27,7 +27,7 @@ let createLogger (verbose: bool) =
         )
         .CreateLogger()
 
-let verboseSwitch = Option<bool>([| "--verbose"; "-v" |], "Detailed output.")
+let verboseSwitch = Option<bool>([| "--verbose"; "-v" |], "Detailed output")
 
 let databaseOption =
     Option<Database>([| "--database"; "--db"; "-d" |], "Database to use", IsRequired = true)

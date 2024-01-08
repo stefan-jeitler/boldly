@@ -104,10 +104,10 @@ CREATE TABLE IF NOT EXISTS schema_version
         dbConnection.Execute(createSchemaVersionSql)
 
     let updateSchemaVersion (dbConnection: NpgsqlConnection) (version: SemVersion) =
-        let updateSql = "UPDATE schema_version SET version = @version, updated_at = now()"
+        let updateSql = "UPDATE schema_version SET version = @version, updated_at = now() AT TIME ZONE 'utc'"
 
         let insertSql =
-            "INSERT INTO schema_version (version, updated_at) VALUES(@version, now())"
+            "INSERT INTO schema_version (version, updated_at) VALUES(@version, now() AT TIME ZONE 'utc')"
 
         let parameter = {| version = version.ToString() |}
 
